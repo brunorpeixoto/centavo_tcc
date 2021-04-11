@@ -1,6 +1,13 @@
-# centavo_tcc
+# Sobre o projeto:
 
-TCC 21:37
+O nome inicial do nosso projeto é "Projeto Centavo". Este nome vem de um projeto já existente e 
+funcional "Projeto Agorá" (Agorá é o centavo do shekel israelense, NIS), que já foi implementado e 
+bem sucedido em Israel.
+Projeto Agorá é uma plataforma de "vendas" de objetos usados por um valor simbolico de uma Agorá 
+(centavo). Na prática, as pessoas postam seus objetos, que ao invéz de serem jogados no lixo, são 
+doados para quem se interessa, necessita e as vezes não tem a condição de comprar um novo. 
+Resumindo, é um OLX de doações, que gostariamos de implementar aqui no Brasil, ou pelo menos 
+na nossa comunidade FACENS. Segue link para apreciação: www.agora.co.il
 
 ## Getting Started
 
