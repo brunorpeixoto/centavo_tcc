@@ -13,7 +13,8 @@ na nossa comunidade FACENS. Segue link para apreciação: www.agora.co.il
 A avaliação do aplicativo vai ser utilizando os siguientes ítems:
 O aluno desenhou os mockups e protótipos antes de começar com a etapa de programação; mostrando as diferentes screens o mais fidedigno possível. (2 pontos)
 Mockup link: https://www.figma.com/file/UI1TTWDQ0jhmg1fNrVsVcJ/Projeto-Centavo?node-id=0%3A1
-![alt text](https://http2.mlstatic.com/D_NQ_NP_923142-MLB31826507983_082019-O.webp)
+
+![alt text](https://github.com/sasukeshipp/centavo_tcc/blob/master/moc.JPG)
 
 O aluno conseguiu implementar e integrar múltiplos elementos de desenvolvimento mobile para a criação das suas interfaces. (4 pontos)
 O aluno implementou um sistema de rotas lògico e funcional. (2 pontos)
