@@ -13,8 +13,8 @@ mixin _$CategoryStore on _CategoryStore, Store {
 
   @override
   List<Category> get allCategoryList => (_$allCategoryListComputed ??=
-      Computed<List<Category>>(() => super.allCategoryList,
-          name: '_CategoryStore.allCategoryList'))
+          Computed<List<Category>>(() => super.allCategoryList,
+              name: '_CategoryStore.allCategoryList'))
       .value;
 
   final _$errorAtom = Atom(name: '_CategoryStore.error');

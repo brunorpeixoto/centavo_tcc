@@ -1,7 +1,9 @@
+import 'package:centavo_tcc/models/category.dart';
+import 'package:centavo_tcc/screens/category/category_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:centavo_tcc/screens/category/category_screen.dart';
 import 'package:centavo_tcc/stores/donate_store.dart';
+import 'package:mobx/mobx.dart';
 
 class CategoryField extends StatelessWidget {
   CategoryField(this.donateStore);
@@ -14,23 +16,14 @@ class CategoryField extends StatelessWidget {
       return Column(
         children: [
           ListTile(
-            title: donateStore.category == null
-                ? Text(
-                    'Categoria *',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      color: Colors.grey,
-                      fontSize: 18,
-                    ),
-                  )
-                : Text(
-                    'Categoria *',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.grey,
-                      fontSize: 14,
-                    ),
-                  ),
+            title: Text(
+              'Categoria *',
+              style: TextStyle(
+                fontWeight: FontWeight.w800,
+                color: Colors.grey,
+                fontSize: 18,
+              ),
+            ),
             subtitle: donateStore.category == null
                 ? null
                 : Text(

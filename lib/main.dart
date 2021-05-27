@@ -1,4 +1,6 @@
 import 'package:centavo_tcc/repositories/category_repository.dart';
+import 'package:centavo_tcc/repositories/cep_repository.dart';
+import 'package:centavo_tcc/repositories/ibge_repository.dart';
 import 'package:centavo_tcc/screens/base/base_screen.dart';
 import 'package:centavo_tcc/screens/category/category_screen.dart';
 import 'package:centavo_tcc/stores/category_store.dart';
@@ -15,6 +17,8 @@ void main() async {
   await initializeParse();
   setupLocators();
   runApp(MyApp());
+
+  //CepRepository().getAddressFromApi('18074-510').then((value) => print(value));
 }
 
 void setupLocators() {
