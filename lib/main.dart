@@ -12,6 +12,8 @@ import 'package:get_it/get_it.dart';
 import 'package:parse_server_sdk_flutter/generated/i18n.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
+import 'stores/home_store.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeParse();
@@ -23,6 +25,7 @@ void main() async {
 
 void setupLocators() {
   GetIt.I.registerSingleton(PageStore());
+  GetIt.I.registerSingleton(HomeStore());
   GetIt.I.registerSingleton(UserManagerStore());
   GetIt.I.registerSingleton(CategoryStore());
 }
