@@ -26,4 +26,17 @@ abstract class _UserManagerStore with Store {
     setUser(user);
   }
 
+  Future<void> logout() async {
+    await UserRepository().logout();
+    setUser(null);
+  }
+/*
+  void updateUserOneSignal(User user) {
+    if (user != null) {
+      OneSignal.shared.setExternalUserId(user.id);
+    } else {
+      OneSignal.shared.removeExternalUserId();
+    }
+  }*/
+
 }

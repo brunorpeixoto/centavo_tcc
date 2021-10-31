@@ -13,6 +13,21 @@ part 'donate_store.g.dart';
 class DonateStore = _DonateStore with _$DonateStore;
 
 abstract class _DonateStore with Store {
+  _DonateStore(this.ad) {
+    title = ad.title ?? '';
+    description = ad.description ?? '';
+    images = ad.images.asObservable();
+    category = ad.category;
+    hidePhone = ad.hidePhone;
+
+    if (ad.address != null)
+      cepStore = CepStore(ad.address.cep);
+    else
+      cepStore = CepStore(null);
+  }
+
+  final Ad ad;
+
   ObservableList images = ObservableList();
 
   @computed
@@ -77,7 +92,7 @@ abstract class _DonateStore with Store {
       return 'Campo obrigatório';
   }
 
-  CepStore cepStore = CepStore();
+  CepStore cepStore;
 
   @computed
   Address get address => cepStore.address;
@@ -100,10 +115,10 @@ abstract class _DonateStore with Store {
   @computed
   bool get formValid =>
       imagesValid &&
-      titleValid &&
-      descriptionValid &&
-      categoryValid &&
-      addressValid;
+          titleValid &&
+          descriptionValid &&
+          categoryValid &&
+          addressValid;
 
   @computed
   Function get sendPressed => formValid ? _send : null;
@@ -125,7 +140,6 @@ abstract class _DonateStore with Store {
 
   @action
   Future<void> _send() async {
-    final ad = Ad();
     ad.title = title;
     ad.description = description;
     ad.category = category;

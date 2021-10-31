@@ -1,12 +1,30 @@
 import 'package:centavo_tcc/components/error_box.dart';
 import 'package:centavo_tcc/screens/signup/signup_screen.dart';
 import 'package:centavo_tcc/stores/login_store.dart';
+import 'package:centavo_tcc/stores/user_manager_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:mobx/mobx.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
 
+class _LoginScreenState extends State<LoginScreen> {
   final LoginStore loginStore = LoginStore();
+
+  final UserManagerStore userManagerStore = GetIt.I<UserManagerStore>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    when((_) => userManagerStore.user != null, () {
+      Navigator.of(context).pop(true);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +41,7 @@ class LoginScreen extends StatelessWidget {
             child: Card(
               margin: const EdgeInsets.symmetric(horizontal: 32),
               shape:
-                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               elevation: 8,
               child: Padding(
                 padding: const EdgeInsets.all(16),
@@ -117,10 +135,10 @@ class LoginScreen extends StatelessWidget {
                         child: RaisedButton(
                           color: Colors.purple,
                           child: loginStore.loading
-                            ? CircularProgressIndicator(
+                              ? CircularProgressIndicator(
                             valueColor: AlwaysStoppedAnimation(Colors.white),
-                            )
-                            : Text('ENTRAR'),
+                          )
+                              : Text('ENTRAR'),
                           textColor: Colors.white,
                           elevation: 0,
                           shape: RoundedRectangleBorder(
@@ -145,7 +163,7 @@ class LoginScreen extends StatelessWidget {
                             GestureDetector(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => SignUpScreen()));
+                                    builder: (_) => SignUpScreen()));
                               },
                               child: Text(
                                 'Cadastre-se',

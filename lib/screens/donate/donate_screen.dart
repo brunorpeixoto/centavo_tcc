@@ -1,5 +1,7 @@
 import 'package:centavo_tcc/components/custom_drawer/custom_drawer.dart';
 import 'package:centavo_tcc/components/error_box.dart';
+import 'package:centavo_tcc/models/ad.dart';
+import 'package:centavo_tcc/screens/myads/myads_screen.dart';
 import 'package:centavo_tcc/stores/page_store.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,19 +15,35 @@ import 'components/images_field.dart';
 import 'package:centavo_tcc/stores/donate_store.dart';
 
 class DonateScreen extends StatefulWidget {
+  DonateScreen({this.ad});
+
+  final Ad ad;
+
   @override
-  _DonateScreenState createState() => _DonateScreenState();
+  _DonateScreenState createState() => _DonateScreenState(ad);
 }
 
 class _DonateScreenState extends State<DonateScreen> {
-  final DonateStore donateStore = DonateStore();
+  _DonateScreenState(Ad ad)
+      : editing = ad != null,
+        donateStore = DonateStore(ad ?? Ad());
+
+  final DonateStore donateStore;
+
+  bool editing;
 
   @override
   void initState() {
     super.initState();
 
     when((_) => donateStore.savedAd, () {
-      GetIt.I<PageStore>().setPage(0);
+      if (editing)
+        Navigator.of(context).pop(true);
+      else {
+        GetIt.I<PageStore>().setPage(0);
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (_) => MyAdsScreen(initialPage: 1)));
+      }
     });
   }
 
@@ -40,9 +58,9 @@ class _DonateScreenState extends State<DonateScreen> {
     final contentPadding = const EdgeInsets.fromLTRB(16, 10, 12, 10);
 
     return Scaffold(
-      drawer: CustomDrawer(),
+      drawer: editing ? null : CustomDrawer(),
       appBar: AppBar(
-        title: Text('Doar Item'),
+        title: Text(editing ? 'Editar Item' : 'Doar Item'),
         //elevation: 0,
         centerTitle: true,
       ),
@@ -82,6 +100,7 @@ class _DonateScreenState extends State<DonateScreen> {
                   children: [
                     Observer(builder: (_) {
                       return TextFormField(
+                        initialValue: donateStore.title,
                         onChanged: donateStore.setTitle,
                         decoration: InputDecoration(
                           labelText: 'Título *',
@@ -93,6 +112,7 @@ class _DonateScreenState extends State<DonateScreen> {
                     }),
                     Observer(builder: (_) {
                       return TextFormField(
+                        initialValue: donateStore.description,
                         onChanged: donateStore.setDescription,
                         decoration: InputDecoration(
                           labelText: 'Descrição *',

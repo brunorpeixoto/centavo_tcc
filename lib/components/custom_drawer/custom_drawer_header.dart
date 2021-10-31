@@ -13,16 +13,12 @@ class CustomDrawerHeader extends StatelessWidget {
     return GestureDetector(
       onTap: (){
         Navigator.of(context).pop();
-        GetIt.I<PageStore>().setPage(5);
-        if(userManagerStore.isLoggedIn) {
-
+        GetIt.I<PageStore>().setPage(0);
+        if (userManagerStore.isLoggedIn) {
         } else {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => LoginScreen())
-          );
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (_) => LoginScreen()));
         }
-
-
       },
       child: Container(
         color: Colors.amberAccent,

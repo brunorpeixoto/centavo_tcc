@@ -1,5 +1,7 @@
+import 'package:centavo_tcc/screens/account/account_screen.dart';
 import 'package:centavo_tcc/screens/donate/donate_screen.dart';
 import 'package:centavo_tcc/screens/home/home_screen.dart';
+import 'package:centavo_tcc/screens/favorites/favorites_screen.dart';
 import 'package:centavo_tcc/stores/page_store.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -22,7 +24,7 @@ class _BaseScreenState extends State<BaseScreen> {
 
     reaction(
             (_) => pageStore.page,
-        (page) => pageController.jumpToPage(page)
+            (page) => pageController.jumpToPage(page)
     );
   }
 
@@ -35,10 +37,14 @@ class _BaseScreenState extends State<BaseScreen> {
         children: [
           HomeScreen(),
           DonateScreen(),
-          Container(color: Colors.green,),
-          Container(color: Colors.yellow,),
-          Container(color: Colors.purple,),
-          Container(color: Colors.brown,),
+          Container(
+            color: Colors.green,
+          ),
+          Container(
+            color: Colors.yellow,
+          ),
+          FavoritesScreen(),
+          AccountScreen(),
         ],
       ),
     );
